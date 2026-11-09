@@ -1,7 +1,20 @@
 // API Client for connecting to Laravel backend
 // Toggle this to true to connect to your Laravel backend APIs
 const USE_REAL_BACKEND = true; 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
+
+const isLocalhost = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' || 
+  window.location.hostname === '127.0.0.1' || 
+  window.location.hostname === ''
+);
+
+const savedApiUrl = typeof window !== 'undefined' ? localStorage.getItem('pos_custom_api_url') : null;
+
+const API_BASE_URL = savedApiUrl || import.meta.env.VITE_API_BASE_URL || (
+  isLocalhost
+    ? 'http://127.0.0.1:8000/api'
+    : 'https://sally-membrane-competitions-summit.trycloudflare.com/api'
+);
 
 // --- Local Storage Mock Database ---
 const DEFAULT_PRODUCTS = [
