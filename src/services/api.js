@@ -1,7 +1,7 @@
 // API Client for connecting to Laravel backend
 // Toggle this to true to connect to your Laravel backend APIs
 const USE_REAL_BACKEND = true; 
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
 
 // --- Local Storage Mock Database ---
 const DEFAULT_PRODUCTS = [
